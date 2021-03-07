@@ -90,6 +90,13 @@ def update_dropdown(value):
         return True
     else:
         return False
+
+@app.callback(Output('MassRange','disabled'),Input('chkmrk','value'),)
+def update_dropdown(value):
+    if value==['combined']:
+        return True
+    else:
+        return False
     
 
 if __name__ == '__main__':
