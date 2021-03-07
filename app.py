@@ -19,6 +19,7 @@ scaleconst = np.array([0.5,1.25,1.5,2.5,5,10])
 col_options = [dict(label=x,value=x) for x in df['MassRange'].unique()]
 col_options_var =  [dict(label=x,value=x) for x in df['HaloProperty'].unique()]
 
+
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
 ibu_values=[35, 60, 85, 75]
@@ -27,7 +28,7 @@ color1='darkred'
 color2='orange'
 mytitle='Beer Comparison'
 tabtitle='Halo Environment at Different Scales'
-myheading='Flying Dog Beers'
+myheading='Fixing Halo Environment, Shuffling Halo Properties Exercise'
 label1='IBU'
 label2='ABV'
 githublink='https://github.com/rsujatha/halo-env-dash'
@@ -69,6 +70,11 @@ app.layout = html.Div(children=[
         figure=beer_fig
     ),
     html.A('Code and Data on Github', href=githublink),
+    dcc.Dropdown(id='HaloProperty',placeholder="Select a Halo Property",options=col_options_var,disabled=False),dcc.Dropdown(id='MassRange',placeholder="Select a Mass Range",options=col_options),dcc.Checklist(
+        id='chkmrk',options=[
+            {'label': 'All Combined', 'value': 'combined'},],
+        value=['combined']
+    ),dcc.Graph(id='graph',figure={}),dcc.Graph(id="graph2",figure={})
     ]
 )
 
