@@ -84,6 +84,13 @@ app.layout = html.Div(children=[
     html.A('Data Source', href=sourceurl),
     ]
 )
+@app.callback(Output('HaloProperty','disabled'),Input('chkmrk','value'),)
+def update_dropdown(value):
+    if value==['combined']:
+        return True
+    else:
+        return False
+    
 
 if __name__ == '__main__':
     app.run_server()
