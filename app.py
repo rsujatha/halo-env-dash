@@ -20,8 +20,8 @@ scales=['2r','3r','4r','5r','6r','7r','8r','9r','10r']
 scaleconst = np.array([0.5,1.25,1.5,2.5,5,10])
 
     
-#col_options = [dict(label=x,value=x) for x in df['MassRange'].unique()]
-#col_options_var =  [dict(label=x,value=x) for x in df['HaloProperty'].unique()]
+col_options = [dict(label=x,value=x) for x in df['MassRange'].unique()]
+col_options_var =  [dict(label=x,value=x) for x in df['HaloProperty'].unique()]
 
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
