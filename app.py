@@ -84,6 +84,18 @@ app.layout = html.Div(children=[
     html.A('Data Source', href=sourceurl),
     ]
 )
+@app.callback(Output('graph', 'figure'), [Input('MassRange', 'value'),Input('HaloProperty','value'),Input('chkmrk','value')])
+def cb(massrange,haloproperty,chkmrkvalue):
+    if chkmrkvalue==['combined']:
+        fig = px.line(df0,x="Scale",y="Chisquare",color='Environment',facet_col='scaletype',line_dash='scaletype' ,color_discrete_sequence=colr,log_y=True,custom_data=[df0.index]).update_layout(clickmode='event+select')
+    else:
+        if (massrange==None)or(haloproperty==None):
+            fig = go.Figure().update_layout(clickmode='event+select')
+        else:
+            df_cond = df.query("MassRange==@massrange&HaloProperty==@haloproperty")
+            fig = px.line(df_cond,x="Scale",y="Chisquare",color='Environment',facet_col='scaletype',line_dash='scaletype' ,color_discrete_sequence=colr,log_y=True,custom_data=[df_cond.index]).update_layout(clickmode='event+select')
+    return fig
+
 @app.callback(Output('HaloProperty','disabled'),Input('chkmrk','value'),)
 def update_dropdown(value):
     if value==['combined']:
