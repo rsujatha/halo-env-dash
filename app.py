@@ -2,6 +2,25 @@ import dash
 import dash_core_components as dcc
 import dash_html_components as html
 import plotly.graph_objs as go
+import pandas as pd
+
+df_corrcon = pd.read_pickle('./data/df_corrcon')
+df_corrvar = pd.read_pickle('./data/df_corrvar')
+df_corr = pd.read_pickle('./data/df_corr')
+df = pd.read_pickle('./data/df_scl')
+df0 = pd.read_pickle('./data/df0')
+
+
+colr = ["red","blue", "#17BECF","teal"]
+colrr = ["red", "red","blue","blue", "#17BECF","#17BECF","teal","teal"]
+lnstyle = ["solid","dot","solid","dot","solid","dot","solid","dot"]
+env = ['delta0000-','delta0000-','alpha0001-','alpha0001-','alpha0p30-','alpha0p30-','alpha0p55-','alpha0p55-']
+scales=['2r','3r','4r','5r','6r','7r','8r','9r','10r']
+scaleconst = np.array([0.5,1.25,1.5,2.5,5,10])
+
+    
+col_options = [dict(label=x,value=x) for x in df['MassRange'].unique()]
+col_options_var =  [dict(label=x,value=x) for x in df['HaloProperty'].unique()]
 
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
@@ -48,7 +67,7 @@ app.title=tabtitle
 
 ########### Set up the layout
 app.layout = html.Div(children=[
-    html.H1(myheading),dcc.Dropdown(id='HaloProperty',placeholder="Select a Halo Property",options=col_options_var,disabled=False),
+    html.H1(myheading),
     dcc.Graph(
         id='flyingdog',
         figure=beer_fig
