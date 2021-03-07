@@ -12,7 +12,7 @@ df = pd.read_pickle('./data/df_scl')
 df0 = pd.read_pickle('./data/df0')
 
 
-#colr = ["red","blue", "#17BECF","teal"]
+colr = ["red","blue", "#17BECF","teal"]
 #colrr = ["red", "red","blue","blue", "#17BECF","#17BECF","teal","teal"]
 #lnstyle = ["solid","dot","solid","dot","solid","dot","solid","dot"]
 #env = ['delta0000-','delta0000-','alpha0001-','alpha0001-','alpha0p30-','alpha0p30-','alpha0p55-','alpha0p55-']
