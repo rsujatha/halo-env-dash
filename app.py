@@ -74,7 +74,7 @@ app.layout = html.Div(children=[
         id='chkmrk',options=[
             {'label': 'All Combined', 'value': 'combined'},],
         value=['combined']
-    ),
+    ),dcc.Graph(id='graph',figure={}),dcc.Graph(id="graph2",figure={}),
     dcc.Graph(
         id='flyingdog',
         figure=beer_fig
