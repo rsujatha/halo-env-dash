@@ -48,7 +48,7 @@ app.title=tabtitle
 
 ########### Set up the layout
 app.layout = html.Div(children=[
-    html.H1(myheading),
+    html.H1(myheading),dcc.Dropdown(id='HaloProperty',placeholder="Select a Halo Property",options=col_options_var,disabled=False),
     dcc.Graph(
         id='flyingdog',
         figure=beer_fig
