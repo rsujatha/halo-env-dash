@@ -69,7 +69,7 @@ app.layout = html.Div(children=[
         id='flyingdog',
         figure=beer_fig
     ),
-    html.A('Code and Data on Github', href=githublink)
+    html.A('Code and Data on Github', href=githublink),
     ]
 )
 
