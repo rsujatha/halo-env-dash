@@ -1,24 +1,7 @@
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
-import pandas as pd
-import numpy as np
-#from dash.dependencies import Input,Output
-#import plotly.express as px
-#import plotly.graph_objects as go
-#from plotly.subplots import make_subplots
-
-colr = ["red","blue", "#17BECF","teal"]
-colrr = ["red", "red","blue","blue", "#17BECF","#17BECF","teal","teal"]
-lnstyle = ["solid","dot","solid","dot","solid","dot","solid","dot"]
-env = ['delta0000-','delta0000-','alpha0001-','alpha0001-','alpha0p30-','alpha0p30-','alpha0p55-','alpha0p55-']
-scales=['2r','3r','4r','5r','6r','7r','8r','9r','10r']
-scaleconst = np.array([0.5,1.25,1.5,2.5,5,10])
-
-    
-#col_options = [dict(label=x,value=x) for x in df['MassRange'].unique()]
-#col_options_var =  [dict(label=x,value=x) for x in df['HaloProperty'].unique()]
-
+import plotly.graph_objs as go
 
 ########### Define your variables
 beers=['Chesapeake Stout', 'Snake Dog IPA', 'Imperial Porter', 'Double Dog IPA']
@@ -27,11 +10,12 @@ abv_values=[5.4, 7.1, 9.2, 4.3]
 color1='darkred'
 color2='orange'
 mytitle='Beer Comparison'
-tabtitle='Halo Environment at Different Scales'
-myheading='Fixing Halo Environment, Shuffling Halo Properties Exercise'
+tabtitle='beer!'
+myheading='Flying Dog Beers'
 label1='IBU'
 label2='ABV'
-githublink='https://github.com/rsujatha/halo-env-dash'
+githublink='https://github.com/austinlasseter/flying-dog-beers'
+sourceurl='https://www.flyingdog.com/beers/'
 
 ########### Set up the chart
 bitterness = go.Bar(
@@ -69,7 +53,9 @@ app.layout = html.Div(children=[
         id='flyingdog',
         figure=beer_fig
     ),
-    html.A('Code and Data on Github', href=githublink),
+    html.A('Code on Github', href=githublink),
+    html.Br(),
+    html.A('Data Source', href=sourceurl),
     ]
 )
 
