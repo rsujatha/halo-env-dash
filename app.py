@@ -4,6 +4,8 @@ import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
 import numpy as np
+from dash.dependencies import Input,Output
+
 
 df_corrcon = pd.read_pickle('./data/df_corrcon')
 df_corrvar = pd.read_pickle('./data/df_corrvar')
