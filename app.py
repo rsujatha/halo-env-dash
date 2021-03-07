@@ -69,12 +69,7 @@ app.layout = html.Div(children=[
         id='flyingdog',
         figure=beer_fig
     ),
-    html.A('Code and Data on Github', href=githublink),
-    dcc.Dropdown(id='HaloProperty',placeholder="Select a Halo Property",options=col_options_var,disabled=False),dcc.Dropdown(id='MassRange',placeholder="Select a Mass Range",options=col_options),dcc.Checklist(
-        id='chkmrk',options=[
-            {'label': 'All Combined', 'value': 'combined'},],
-        value=['combined']
-    ),dcc.Graph(id='graph',figure={}),dcc.Graph(id="graph2",figure={})
+    html.A('Code and Data on Github', href=githublink)
     ]
 )
 
