@@ -35,11 +35,10 @@ color1='darkred'
 color2='orange'
 mytitle='Beer Comparison'
 tabtitle='beer!'
-myheading='Flying Dog Beers'
+myheading='Fixing Halo Environment, Shuffling Halo Properties Exercise'
 label1='IBU'
 label2='ABV'
 githublink='https://github.com/rsujatha/halo-env-dash'
-sourceurl='https://www.flyingdog.com/beers/'
 
 ########### Set up the chart
 bitterness = go.Bar(
