@@ -87,7 +87,8 @@ app.layout = html.Div(children=[
 )
 @app.callback(Output('graph', 'figure'), [Input('MassRange', 'value'),Input('HaloProperty','value'),Input('chkmrk','value')])
 def cb(massrange,haloproperty,chkmrkvalue):
-    fig = px.line(df0,x="Scale",y="Chisquare",color='Environment',facet_col='scaletype',line_dash='scaletype' ,color_discrete_sequence=colr,log_y=True,custom_data=[df0.index]).update_layout(clickmode='event+select')
+    if chkmrkvalue==['combined']:
+        fig = px.line(df0,x="Scale",y="Chisquare",color='Environment',facet_col='scaletype',line_dash='scaletype' ,color_discrete_sequence=colr,log_y=True,custom_data=[df0.index]).update_layout(clickmode='event+select')
     return fig
 
 @app.callback(Output('HaloProperty','disabled'),Input('chkmrk','value'),)
