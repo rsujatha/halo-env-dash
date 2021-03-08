@@ -90,7 +90,6 @@ def cb(massrange,haloproperty,chkmrkvalue):
             df_cond = df.query("MassRange==@massrange&HaloProperty==@haloproperty")
             fig = px.line(df_cond,x="Scale",y="Chisquare",color='Environment',facet_col='scaletype',line_dash='scaletype' ,color_discrete_sequence=colr,log_y=True,custom_data=[df_cond.index]).update_layout(clickmode='event+select')
     return fig
-
 @app.callback(Output('graph2','figure'),[Input('MassRange','value'),Input('HaloProperty','value'),Input('graph','clickData'),Input('chkmrk','value')])
 def display_selected_data(massrange,haloproperty,clickData,chkmrkvalue):
     if chkmrkvalue==["combined"]:
@@ -104,12 +103,15 @@ def display_selected_data(massrange,haloproperty,clickData,chkmrkvalue):
             else:
                 df_corrcond = df_corrcon.query("Environment==@envmnt")
             fig = px.line(df_corrcond,x="radialdistance",y="xir",color='Quartile',line_group = 'MassRange',facet_col='HaloProperty',animation_frame="Scale",line_dash_sequence=[lnstyle[curveno[0]],lnstyle[curveno[0]]],color_discrete_sequence=[colrr[curveno[0]],colrr[curveno[0]]],log_y=True,log_x=True, range_y=[0.0005, 100])
+            fig2 = px.scatter(df_corr,x='radialdistance',y='xir',color='Quartile',symbol='Quartile',facet_col='HaloProperty',symbol_sequence=['5','6'],color_discrete_sequence=['black'])
             if np.mod(int(curveno[0]),2)==0:
                 activeslide =scaleno[0]-2
             else:
                 activeslide = int(np.argwhere(scaleconst==scaleno[0])[0,0])
             fig.layout['sliders'][0]['active'] = activeslide
             fig = go.Figure(data=fig['frames'][activeslide]['data'], frames=fig['frames'], layout=fig.layout)
+            fig.add_traces([fig2.data[0],fig2.data[1],fig2.data[2],fig2.data[3],fig2.data[4],fig2.data[5],fig2.data[6],fig2.data[7],fig2.data[8],fig2.data[9]])
+            print (fig2.data[5])
         else:
             fig = go.Figure()
     else:
