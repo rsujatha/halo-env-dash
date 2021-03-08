@@ -38,7 +38,7 @@ tabtitle='beer!'
 myheading='Flying Dog Beers'
 label1='IBU'
 label2='ABV'
-githublink='https://github.com/austinlasseter/flying-dog-beers'
+githublink='https://github.com/rsujatha/halo-env-dash'
 sourceurl='https://www.flyingdog.com/beers/'
 
 ########### Set up the chart
@@ -76,19 +76,19 @@ app.layout = html.Div(children=[
             {'label': 'All Combined', 'value': 'combined'},],
         value=['combined']
     ),dcc.Graph(id='graph',figure={}),dcc.Graph(id="graph2",figure={}),
-    dcc.Graph(
-        id='flyingdog',
-        figure=beer_fig
-    ),
-    html.A('Code on Github', href=githublink),
-    html.Br(),
-    html.A('Data Source', href=sourceurl),
+    html.A('Code and Data on Github', href=githublink),
     ]
 )
 @app.callback(Output('graph', 'figure'), [Input('MassRange', 'value'),Input('HaloProperty','value'),Input('chkmrk','value')])
 def cb(massrange,haloproperty,chkmrkvalue):
     if chkmrkvalue==['combined']:
         fig = px.line(df0,x="Scale",y="Chisquare",color='Environment',facet_col='scaletype',line_dash='scaletype' ,color_discrete_sequence=colr,log_y=True,custom_data=[df0.index]).update_layout(clickmode='event+select')
+    else:
+        if (massrange==None)or(haloproperty==None):
+            fig = go.Figure().update_layout(clickmode='event+select')
+        else:
+            df_cond = df.query("MassRange==@massrange&HaloProperty==@haloproperty")
+            fig = px.line(df_cond,x="Scale",y="Chisquare",color='Environment',facet_col='scaletype',line_dash='scaletype' ,color_discrete_sequence=colr,log_y=True,custom_data=[df_cond.index]).update_layout(clickmode='event+select')
     return fig
 
 @app.callback(Output('HaloProperty','disabled'),Input('chkmrk','value'),)
