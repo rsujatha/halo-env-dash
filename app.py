@@ -75,6 +75,10 @@ app.layout = html.Div(children=[
             {'label': 'All Combined', 'value': 'combined'},],
         value=['combined']
     ),dcc.Graph(id='graph',figure={}),dcc.Graph(id="graph2",figure={}),
+    html.Details([
+        html.Summary('Details4'),
+        html.P('Content4')
+    ],id='details4'),
     html.A('Code and Data on Github', href=githublink),
     ]
 )
