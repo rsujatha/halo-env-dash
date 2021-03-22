@@ -126,8 +126,8 @@ def display_selected_data(massrange,haloproperty,clickData,chkmrkvalue):
                 curveno = [point["curveNumber"] for point in clickData["points"]]
                 scaleno = [point["x"] for point in clickData["points"]]
                 envmnt = env[int(curveno[0])]
-                upper = 'upper'
-                lower = 'lower'
+                upper = 'upper-simulation'
+                lower = 'lower-simulation'
                 up='up'
                 low='low'
                 if np.mod(int(curveno[0]),2)==0:
@@ -156,8 +156,8 @@ def display_selected_data(massrange,haloproperty,clickData,chkmrkvalue):
                     activeslide = int(np.argwhere(scaleconst==scaleno[0])[0,0])
                 fig.layout['sliders'][0]['active'] = activeslide
                 fig = go.Figure(data=fig['frames'][activeslide]['data'], frames=fig['frames'], layout=fig.layout)
-                fig.add_traces([go.Scatter(x=df_corrcondup0['radialdistance'], y=df_corrcondup0['xir'],mode='markers',marker_color='#000000',marker = dict(size = 10, symbol = 5),error_y=dict(type='data', array=df_corrcondup0['xirerror'],visible=True)),
-                 go.Scatter(x=df_corrcondlow0['radialdistance'], y=df_corrcondlow0['xir'],mode='markers',marker_color='#000000',marker = dict(size = 10, symbol = 6),error_y=dict(type='data', array=df_corrcondlow0['xirerror'],visible=True)),])             
+                fig.add_traces([go.Scatter(x=df_corrcondup0['radialdistance'], y=df_corrcondup0['xir'],name="simulation-upper quartile",mode='markers',marker_color='#000000',marker = dict(size = 10, symbol = 5),error_y=dict(type='data', array=df_corrcondup0['xirerror'],visible=True)),
+                 go.Scatter(x=df_corrcondlow0['radialdistance'], y=df_corrcondlow0['xir'],name="simulation-lower quartile",mode='markers',marker_color='#000000',marker = dict(size = 10, symbol = 6),error_y=dict(type='data', array=df_corrcondlow0['xirerror'],visible=True)),])             
         else:
             fig = go.Figure()
     return fig
@@ -178,4 +178,4 @@ def update_dropdown(value):
     
 
 if __name__ == '__main__':
-    app.run_server()
+    app.run_server(port=8095)
