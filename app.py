@@ -74,11 +74,11 @@ app.layout = html.Div(children=[
         id='chkmrk',options=[
             {'label': 'All Combined', 'value': 'combined'},],
         value=['combined']
-    ),dcc.Graph(id='graph',figure={}),dcc.Graph(id="graph2",figure={}),
+    ),dcc.Graph(id='graph',figure={}),    
     html.Details([
-        html.Summary('Details4'),
-        html.P('Content4')
-    ],id='details4'),
+        html.Summary('Figure Caption'),
+        html.P('Figure above shows the total chisquare between simulation and mock sample data for different environment definitions. Click on the individual points on the plot to reveal visually the fit between corresponding two point correlation from shuffled-mock and simulation in the bottom panel. Note that in the combined plots the different mass ranges are distinguished from each other by vertically shifting them upward and downward by 5.')
+    ],id='details4'),dcc.Graph(id="graph2",figure={}),
     html.A('Code and Data on Github', href=githublink),
     ]
 )
